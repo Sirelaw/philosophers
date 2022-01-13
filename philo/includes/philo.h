@@ -6,7 +6,7 @@
 /*   By: oipadeol <oipadeol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 22:01:44 by oipadeol          #+#    #+#             */
-/*   Updated: 2022/01/12 23:35:17 by oipadeol         ###   ########.fr       */
+/*   Updated: 2022/01/13 19:03:02 by oipadeol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,18 @@
 
 typedef struct	s_input
 {
-	int	p_num;
-	int	tt_die;
-	int	tt_eat;
-	int	tt_sleep;
-	int	no_cycle;
+	int				p_num;
+	int				tt_die;
+	int				tt_eat;
+	int				tt_sleep;
+	int				no_cycle;
+	pthread_mutex_t	print_mutex;
 }t_input;
 
 typedef	struct s_fork
 {
 	pthread_mutex_t	fork_lock;
+	pthread_mutex_t	print_lock;
 	int				philo_id;
 	int 			state;
 	void			*next;
@@ -39,6 +41,7 @@ typedef	struct s_fork
 	int				tt_eat;
 	int				tt_sleep;
 	int				no_cycle;
+	long int		last_eat;
 }t_fork;
 
 
