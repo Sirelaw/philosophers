@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: oipadeol <oipadeol@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/08 22:00:46 by oipadeol          #+#    #+#             */
-/*   Updated: 2022/01/18 21:20:05 by oipadeol         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../includes/philo.h"
 
 void	u_sleeper(long	sleep_time)
@@ -55,8 +43,6 @@ long	time_diff(struct timeval start_time)
 
 void	print_status(t_fork *phil, int action, struct timeval s_time)
 {
-	if (phil->input->dead != 0)
-		return ;
 	pthread_mutex_lock(&(phil->input->print_lock));
 	if ((action == THINK) && (phil->input->dead == 0))
 		printf("%ldms: %d	is thinking.\n", time_diff(s_time), phil->id);
@@ -66,7 +52,7 @@ void	print_status(t_fork *phil, int action, struct timeval s_time)
 		printf("%ldms: %d	is eating.\n", time_diff(s_time), phil->id);
 	else if ((action == SLEEP) && (phil->input->dead == 0))
 		printf("%ldms: %d	is sleeping.\n", time_diff(s_time), phil->id);
-	if ((action == DEATH) && (phil->input->dead == 0))
+	else if ((action == DEATH) && (phil->input->dead == 0))
 	{
 		(phil->input->dead)++;
 		printf("%ldms: %d	has passed away.\n", time_diff(s_time), phil->id);
@@ -93,8 +79,6 @@ int	takeforks(t_fork *forks, struct timeval start_time)
 			return(0);
 		}
 	}
-	else
-		u_sleeper(forks->input->tt_die * 1000);
 	return (1);
 }
 
@@ -123,31 +107,25 @@ void	half_think(t_fork *forks, struct timeval start_time)
 void	*living(void *forks)
 {
 	t_fork			*phil;
-	struct timeval	start;
 
 	phil = forks;
 	while (phil->input->wait_int == 0)
-		usleep(2);
-	gettimeofday(&start, NULL);
+		usleep(1);
 	gettimeofday(&(phil->start_eat), NULL);
-	half_think(phil, start);
-	while (phil->input->dead == 0)
+	half_think(phil, phil->input->start);
+	while (time_diff(phil->start_eat) <= phil->input->tt_die)
 	{
-		if (((time_diff(start) - phil->last_eat) > phil->input->tt_die)
-			|| takeforks(phil, start))
-			print_status(phil, DEATH, start);
-		print_status(phil, EAT, start);
-		phil->last_eat = time_diff(start);
+		takeforks(phil, phil->input->start);
+		print_status(phil, EAT, phil->input->start);
+		phil->last_eat = time_diff(phil->input->start);
 		gettimeofday(&(phil->start_eat), NULL);
-		if (phil->input->dead == 0)
-			u_sleeper(phil->input->tt_eat * 1000);
+		u_sleeper(phil->input->tt_eat * 1000);
 		returnforks(phil);
 		if (!(--(phil->run_cycle)))
 			break ;
-		print_status(phil, SLEEP, start);
-		if (phil->input->dead == 0)
-			u_sleeper(phil->input->tt_sleep * 1000);
-		print_status(phil, THINK, start);
+		print_status(phil, SLEEP, phil->input->start);
+		u_sleeper(phil->input->tt_sleep * 1000);
+		print_status(phil, THINK, phil->input->start);
 	}
 	return (NULL);
 }
@@ -186,8 +164,7 @@ void	*watcher(void *forks)
 	if (!(phil->run_cycle))
 		return (NULL);
 	else
-		printf("someone died\n");
-		// print_status(phil, DEATH, phil->input->start);
+		print_status(phil, DEATH, phil->input->start);
 	return (NULL);
 }
 
@@ -205,6 +182,8 @@ void	*start_routine(t_input *input, t_fork *forks, pthread_t	*philos)
 		forks = forks->next;
 		u_sleeper(100);
 	}
+	u_sleeper(100);
+	gettimeofday(&(input->start), NULL);
 	input->wait_int = 1;
 	if (pthread_create(&watchdog, NULL, &watcher, forks) != 0)
 			return (NULL);

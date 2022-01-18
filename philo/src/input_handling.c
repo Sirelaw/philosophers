@@ -6,7 +6,7 @@
 /*   By: oipadeol <oipadeol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 06:25:49 by oipadeol          #+#    #+#             */
-/*   Updated: 2022/01/10 17:29:35 by oipadeol         ###   ########.fr       */
+/*   Updated: 2022/01/16 16:32:45 by oipadeol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,10 @@ int	check_bad_input(int argc, char **argv)
 			write(1, "Enter a number greater than 0 for [no_of_eats]\n", 47);
 			return(2);
 		}
+	if (ft_atoi(argv[1]) <= 0)
+	{
+		write(1, "Enter a number greater than 0 for philos_no\n", 44);
+		return (3);
+	}
 	return (0);
 }
