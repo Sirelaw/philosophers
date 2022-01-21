@@ -6,7 +6,7 @@
 /*   By: oipadeol <oipadeol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 22:01:44 by oipadeol          #+#    #+#             */
-/*   Updated: 2022/01/18 21:15:45 by oipadeol         ###   ########.fr       */
+/*   Updated: 2022/01/21 19:31:33 by oipadeol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ enum action
 typedef struct	s_input
 {
 	int				p_num;
-	int				tt_die;
+	long			tt_die;
 	int				tt_eat;
-	int				tt_sleep;
+	long				tt_sleep;
 	int				run_cycle;
 	int				wait_int;
-	int				dead;
+	struct timeval	start;
 	pthread_mutex_t	print_lock;
 }t_input;
 

@@ -6,7 +6,7 @@
 /*   By: oipadeol <oipadeol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 13:43:15 by oipadeol          #+#    #+#             */
-/*   Updated: 2022/01/18 20:32:23 by oipadeol         ###   ########.fr       */
+/*   Updated: 2022/01/20 23:53:42 by oipadeol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_fork	*create_single_fork(t_input *input)
 	first_fork = fork_lstnew(1, 1, input);
 	if (first_fork == NULL)
 		return (NULL);
-	first_fork->next = fork_lstnew(0, 1, input);
+	first_fork->next = first_fork;
 	if (first_fork == NULL)
 		return (NULL);
 	return (first_fork);
