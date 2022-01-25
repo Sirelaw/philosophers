@@ -6,11 +6,11 @@
 /*   By: oipadeol <oipadeol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 06:25:49 by oipadeol          #+#    #+#             */
-/*   Updated: 2022/01/25 04:49:59 by oipadeol         ###   ########.fr       */
+/*   Updated: 2022/01/25 00:51:05 by oipadeol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "../includes/philo_bonus.h"
 
 int	check_bad_input(int argc, char **argv)
 {
@@ -42,7 +42,6 @@ int	check_bad_input(int argc, char **argv)
 
 void	initialize_input(t_input *input, int argc, char **argv)
 {
-	input->wait_int = 0;
 	input->p_num = ft_atoi(argv[1]);
 	input->tt_die = ft_atoi(argv[2]);
 	input->tt_eat = ft_atoi(argv[3]);
@@ -51,6 +50,33 @@ void	initialize_input(t_input *input, int argc, char **argv)
 		input->run_cycle = ft_atoi(argv[5]);
 	else
 		input->run_cycle = -1;
-	pthread_mutex_init(&(input->print_lock), NULL);
-	pthread_mutex_init(&(input->wait_mutex), NULL);
+	sem_unlink(PRINT_SEM_FNAME);
+	sem_unlink(FORK_SEM_FNAME);
+	sem_unlink(WAIT_SEM_FNAME);
+	sem_unlink(DONE_SEM_FNAME);
+	input->print_sem = sem_open(PRINT_SEM_FNAME, O_CREAT, 0666, 1);
+	input->fork_sem = sem_open(FORK_SEM_FNAME, O_CREAT, 0666, input->p_num);
+	input->wait_sem = sem_open(WAIT_SEM_FNAME, O_CREAT, 0666, 0);
+	input->done_sem = sem_open(DONE_SEM_FNAME, O_CREAT, 0666, 0);
+	if ((input->print_sem == SEM_FAILED) || (input->fork_sem == SEM_FAILED)
+		|| (input->wait_sem == SEM_FAILED) || (input->done_sem == SEM_FAILED))
+	{
+		perror("Failed to open semaphore\n");
+		exit(EXIT_FAILURE);
+	}
+}
+
+t_phil	*new_philo(int id, t_input *input)
+{
+	t_phil	*newelem;
+
+	newelem = malloc(sizeof(t_phil));
+	if (newelem == NULL)
+		return (NULL);
+	newelem->input = input;
+	newelem->id = id;
+	newelem->run_cycle = input->run_cycle;
+	newelem->wait_int = 0;
+	newelem->last_eat = 0;
+	return (newelem);
 }

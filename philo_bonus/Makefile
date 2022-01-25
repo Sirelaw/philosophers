@@ -6,12 +6,11 @@
 #    By: oipadeol <oipadeol@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/16 20:23:06 by oipadeol          #+#    #+#              #
-#    Updated: 2022/01/22 19:52:27 by oipadeol         ###   ########.fr        #
+#    Updated: 2022/01/24 23:55:55 by oipadeol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =	philo
-BONUS_NAME = bonus_philo
+NAME = philo_bonus
 # Color codes
 
 RESET	= \033[0m
@@ -33,8 +32,8 @@ OBJ_DIR = ./obj/
 INC_DIR = ./includes/
 
 # Source files and object files
-SRC_FILES =	main.c input_handling.c living.c utils_helpers/ft_atoi.c\
-			utils_helpers/fork_utils.c utils_helpers/timing_utils.c
+SRC_FILES =	main.c input_handling.c philo_routine.c utils_helpers/ft_atoi.c\
+			utils_helpers/timing_utils.c
 			
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
@@ -43,8 +42,6 @@ SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 
 all: obj $(NAME)
-
-bonus: bonus_obj $(BONUS_NAME)
 
 obj:
 	@mkdir -p $(OBJ_DIR)
