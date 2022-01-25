@@ -6,7 +6,7 @@
 #    By: oipadeol <oipadeol@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/16 20:23:06 by oipadeol          #+#    #+#              #
-#    Updated: 2022/01/22 19:52:27 by oipadeol         ###   ########.fr        #
+#    Updated: 2022/01/25 19:29:03 by oipadeol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,7 @@ BLUE	= \033[34m
 CC =	gcc -pthread
 
 # Compiling flags
-# FLAGS = -Wall -Werror -Wextra
-FLAGS = 
+FLAGS = -Wall -Werror -Wextra
 LFLAGS = -L$$HOME/.brew/opt/readline/lib -lreadline
 CPFLAGS = -I$$HOME/.brew/opt/readline/include
 
@@ -44,7 +43,9 @@ OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 
 all: obj $(NAME)
 
-bonus: bonus_obj $(BONUS_NAME)
+bonus:
+	@cd ../philo_bonus && $(MAKE)
+	@cp ../philo_bonus/philo_bonus philo_bonus
 
 obj:
 	@mkdir -p $(OBJ_DIR)
@@ -70,6 +71,7 @@ clean:
 fclean: clean
 	@echo "$(BLUE)***   Deleting executable file from $(NAME)   ...   ***$(RESET)"
 	@rm -f $(NAME)
+	@rm -f philo_bonus
 
 # re rule
 re: fclean all

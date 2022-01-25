@@ -6,7 +6,7 @@
 /*   By: oipadeol <oipadeol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 22:00:46 by oipadeol          #+#    #+#             */
-/*   Updated: 2022/01/25 05:07:14 by oipadeol         ###   ########.fr       */
+/*   Updated: 2022/01/25 12:32:09 by oipadeol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	join_or_detach_threads(pthread_t *philos, int n, void **watch_ret)
 void	*watchdog(void *forks)
 {
 	t_fork			*phil;
-	struct timeval	start;
 	long			tt_die;
 	int				*ret;
 

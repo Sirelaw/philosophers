@@ -6,7 +6,7 @@
 /*   By: oipadeol <oipadeol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 12:29:45 by oipadeol          #+#    #+#             */
-/*   Updated: 2022/01/25 04:07:39 by oipadeol         ###   ########.fr       */
+/*   Updated: 2022/01/25 12:47:52 by oipadeol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	wait_and_kill(t_input *input, pid_t *pid_arr, t_phil **phil)
 
 	i = 0;
 	sem_wait(input->done_sem);
-	i = 0;
 	usleep(input->tt_eat * 1000);
 	while (i < input->p_num)
 		kill(pid_arr[i++], SIGINT);

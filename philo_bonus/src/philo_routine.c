@@ -6,7 +6,7 @@
 /*   By: oipadeol <oipadeol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 11:46:02 by oipadeol          #+#    #+#             */
-/*   Updated: 2022/01/25 03:25:12 by oipadeol         ###   ########.fr       */
+/*   Updated: 2022/01/25 19:28:14 by oipadeol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	*living(void *philo)
 
 	phil = philo;
 	gettimeofday(&phil->start_eat, NULL);
-	usleep(1000);
 	if ((phil->id != 1) && (phil->id > (phil->input->p_num / 2)))
 		u_sleeper(phil->input->tt_sleep * 1000, phil->input->p_num);
 	while (1)
