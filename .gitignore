@@ -1,0 +1,5 @@
+# VS Code debug files
+.vscode
+
+# Object files
+*.o
