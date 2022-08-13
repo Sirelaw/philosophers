@@ -6,7 +6,7 @@
 #    By: oipadeol <oipadeol@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/16 20:23:06 by oipadeol          #+#    #+#              #
-#    Updated: 2022/01/24 23:55:55 by oipadeol         ###   ########.fr        #
+#    Updated: 2022/05/04 21:33:54 by oipadeol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,11 @@ GREEN	= \033[32m
 YELLOW	= \033[33m
 BLUE	= \033[34m
 
-CC =	gcc -pthread
+CC =	gcc -pthread #-lpthread -lrt
 
 # Compiling flags
-# FLAGS = -Wall -Werror -Wextra
-FLAGS = 
+FLAGS = -Wall -Werror -Wextra
+# FLAGS = 
 LFLAGS = -L$$HOME/.brew/opt/readline/lib -lreadline
 CPFLAGS = -I$$HOME/.brew/opt/readline/include
 

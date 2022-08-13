@@ -1,5 +1,7 @@
 ## philosophers - The infamous dining philosophers problem
 
+![result](https://github.com/oipadeol/philosophers/blob/main/readme_additions/result.png)
+
 This is an implementation of the [dining philosophers problem](https://en.wikipedia.org/wiki/Dining_philosophers_problem).
 
 The dining philosophers problem is an example problem often used in concurrent algorithm design to illustrate synchronization issues and techniques for resolving them.

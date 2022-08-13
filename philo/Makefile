@@ -6,7 +6,7 @@
 #    By: oipadeol <oipadeol@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/16 20:23:06 by oipadeol          #+#    #+#              #
-#    Updated: 2022/01/25 19:29:03 by oipadeol         ###   ########.fr        #
+#    Updated: 2022/08/14 00:35:08 by oipadeol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ GREEN	= \033[32m
 YELLOW	= \033[33m
 BLUE	= \033[34m
 
-CC =	gcc -pthread
+CC =	gcc
 
 # Compiling flags
 FLAGS = -Wall -Werror -Wextra
