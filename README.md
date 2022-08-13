@@ -2,6 +2,8 @@
 
 This is an implementation of the [dining philosophers problem](https://en.wikipedia.org/wiki/Dining_philosophers_problem).
 
+The dining philosophers problem is an example problem often used in concurrent algorithm design to illustrate synchronization issues and techniques for resolving them.
+
 The problem is designed to illustrate the use of threads and resource sharing in a concurrent programming environment.
 Each philosopher is represented by a thread. 
 
@@ -11,8 +13,19 @@ Deadlock is a problem where two or more threads are blocked waiting for each oth
 
 ## usage
 
+The mandatory part solves the problem using different threads.
+
 ```
-make
+cd philo && make
+```
+```
+./philo [num_philosophers] [time_to_die] [time_to_eat] [time_to_sleep] [num_of_meals]
+```
+
+The bonus part solves the problem by having the philosophers run as different processes.
+
+```
+cd philo_bonus && make
 ```
 ```
 ./philo [num_philosophers] [time_to_die] [time_to_eat] [time_to_sleep] [num_of_meals]
