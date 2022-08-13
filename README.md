@@ -1,6 +1,6 @@
 ## philosophers - The infamous dining philosophers problem
 
-![result](https://github.com/oipadeol/philosophers/blob/main/readme_additions/result.png)
+![result](https://github.com/Sirelaw/philosophers/blob/master/readme_addons/completed.png)
 
 This is an implementation of the [dining philosophers problem](https://en.wikipedia.org/wiki/Dining_philosophers_problem).
 
