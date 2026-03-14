@@ -49,11 +49,12 @@ Prerequisites
 ## Installation & Run
   Bash
   
-  git clone https://github.com/Sirelaw/philosophers.git
-  cd philo
-  make
-  # Arguments: [number_of_philosophers] [time_to_die] [time_to_eat] [time_to_sleep]
-  ./philo 5 800 200 200
+```
+git clone https://github.com/Sirelaw/philosophers.git
+cd philo && make
+# Arguments: [number_of_philosophers] [time_to_die] [time_to_eat] [time_to_sleep]
+./philo 5 800 200 200
+```
 
 ### Bonus
 The bonus part solves the problem by having the philosophers run as different processes.
