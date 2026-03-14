@@ -9,9 +9,9 @@ In embedded systems, multiple tasks often compete for a single bus (like I2C/SPI
 
 - Manage Shared Resources: Using Mutexes and Semaphores to gate access to hardware/memory.
 
--  Precise Timing: Using gettimeofday and micro-sleeps to handle strict execution windows.
+- Precise Timing: Using gettimeofday and micro-sleeps to handle strict execution windows.
 
--   Thread Safety: Ensuring data integrity across asynchronous execution flows.
+- Thread Safety: Ensuring data integrity across asynchronous execution flows.
 
 ## Technical Implementation
 
@@ -21,9 +21,9 @@ Each philosopher is represented as a separate thread. I implemented logic to ens
 
 ### 2. Synchronization Primitives
 
-    Mutexes: Used to protect the state of each "fork" and the "last meal time" to prevent data races.
+- Mutexes: Used to protect the state of each "fork" and the "last meal time" to prevent data races.
 
-    Deadlock Avoidance: Implemented an optimized strategy for picking up forks (e.g., asymmetric picking or time-staggering) to ensure the circular wait condition is never met.
+- Deadlock Avoidance: Implemented an optimized strategy for picking up forks (e.g., asymmetric picking or time-staggering) to ensure the circular wait condition is never met.
 
 ### 3. Time Management
 
@@ -33,23 +33,21 @@ Standard sleep functions (usleep) are often imprecise. I implemented a custom pr
 
 The simulation is tested against extreme edge cases:
 
-    Single Philosopher: Ensuring correct behavior when a resource can never be obtained.
+- Single Philosopher: Ensuring correct behavior when a resource can never be obtained.
 
-    Large Clusters: Stress-testing with 200+ threads to verify the efficiency of the mutex locking mechanism.
+- Large Clusters: Stress-testing with 200+ threads to verify the efficiency of the mutex locking mechanism.
 
-    High-Speed Execution: Verifying that no data races occur even when survival times are tuned to the bare minimum.
+- High-Speed Execution: Verifying that no data races occur even when survival times are tuned to the bare minimum.
 
 ## Getting Started
 Prerequisites
 
-    A C compiler (gcc or clang)
+- A C compiler (gcc or clang)
 
-    Standard pthread library (usually available on Linux/macOS)
+- Standard pthread library (usually available on Linux/macOS)
 
 ## Installation & Run
-```
-Bash
-```
+
 ```
 git clone https://github.com/Sirelaw/philosophers.git
 cd philo && make
@@ -62,17 +60,13 @@ The bonus part solves the problem by having the philosophers run as different pr
 
 ```
 cd philo_bonus && make
-```
-```
 ./philo [num_philosophers] [time_to_die] [time_to_eat] [time_to_sleep] [num_of_meals]
 ```
 
 ## Testing for Data Races
 
 This project was rigorously debugged using ThreadSanitizer and Valgrind to ensure zero data races and zero memory leaks.
-```
-Bash
-```
+
 ```
 gcc -fsanitize=thread -g philo.c -o philo
 ./philo 5 800 200 200
