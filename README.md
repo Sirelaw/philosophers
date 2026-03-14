@@ -47,8 +47,9 @@ Prerequisites
     Standard pthread library (usually available on Linux/macOS)
 
 ## Installation & Run
-  Bash
-  
+```
+Bash
+```
 ```
 git clone https://github.com/Sirelaw/philosophers.git
 cd philo && make
@@ -65,14 +66,17 @@ cd philo_bonus && make
 ```
 ./philo [num_philosophers] [time_to_die] [time_to_eat] [time_to_sleep] [num_of_meals]
 ```
-🧪 Testing for Data Races
+
+## Testing for Data Races
 
 This project was rigorously debugged using ThreadSanitizer and Valgrind to ensure zero data races and zero memory leaks.
+```
 Bash
-
+```
+```
 gcc -fsanitize=thread -g philo.c -o philo
 ./philo 5 800 200 200
-
+```
 
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/An_illustration_of_the_dining_philosophers_problem.png" width=400px />
