@@ -7,11 +7,11 @@ This project is a deep-dive into the Dining Philosophers Problem, a classic sync
 
 In embedded systems, multiple tasks often compete for a single bus (like I2C/SPI) or a specific peripheral. If not managed correctly, the system hangs. This project demonstrates my ability to:
 
-    Manage Shared Resources: Using Mutexes and Semaphores to gate access to hardware/memory.
+- Manage Shared Resources: Using Mutexes and Semaphores to gate access to hardware/memory.
 
-    Precise Timing: Using gettimeofday and micro-sleeps to handle strict execution windows.
+-  Precise Timing: Using gettimeofday and micro-sleeps to handle strict execution windows.
 
-    Thread Safety: Ensuring data integrity across asynchronous execution flows.
+-   Thread Safety: Ensuring data integrity across asynchronous execution flows.
 
 ## Technical Implementation
 
